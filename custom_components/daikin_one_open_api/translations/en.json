@@ -1,0 +1,44 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "description": "If you need help with the configuration have a look here: {documentation_url}",
+                "data": {
+                    "api_key": "API Key",
+                    "email": "Email",
+                    "integrator_token": "Integrator Token"
+                }
+            },
+            "reconfigure": {
+                "description": "Reconfiguring the integration for {email}. If you need help with the configuration have a look here: {documentation_url}",
+                "data": {
+                    "api_key": "API Key",
+                    "integrator_token": "Integrator Token"
+                }
+            },
+            "reauth_confirm": {
+                "description": "Authentication needs updating for {email}. If you need help with the configuration have a look here: {documentation_url}",
+                "data": {
+                    "api_key": "API Key",
+                    "integrator_token": "Integrator Token"
+                }
+            },
+            "select_devices": {
+                "description": "Select the devices you would like to include.",
+                "data": {
+                    "selected_devices": "Devices"
+                }
+            }
+        },
+        "error": {
+            "auth": "One or more auth tokens are incorrect.",
+            "connection": "Unable to connect to the server.",
+            "unknown": "Unknown error occurred."
+        },
+        "abort": {
+            "already_configured": "This entry is already configured.",
+            "reconfigure_successful": "Reconfiguration successful!",
+            "unknown": "Unknown error occurred."
+        }
+    }
+}

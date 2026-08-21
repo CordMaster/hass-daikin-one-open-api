@@ -1,7 +1,10 @@
 {
-    "name": "ludeeus/integration_blueprint",
+    "name": "CordMaster/daikin_one_open_api_dev",
     "image": "mcr.microsoft.com/devcontainers/base:debian",
     "postCreateCommand": "scripts/setup",
+    "runArgs": [
+        "--security-opt=label=disable"
+    ],
     "forwardPorts": [
         8123
     ],
@@ -14,6 +17,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "astral-sh.ty",
                 "charliermarsh.ruff",
                 "github.vscode-pull-request-github",
                 "ms-python.python",
@@ -23,14 +27,17 @@
             "settings": {
                 "files.eol": "\n",
                 "editor.tabSize": 4,
-                "editor.formatOnPaste": true,
+                "editor.formatOnPaste": false,
                 "editor.formatOnSave": true,
                 "editor.formatOnType": false,
                 "files.trimTrailingWhitespace": true,
-                "python.analysis.typeCheckingMode": "basic",
+                "python.analysis.typeCheckingMode": "strict",
                 "python.analysis.autoImportCompletions": true,
                 "[python]": {
-                    "editor.defaultFormatter": "charliermarsh.ruff"
+                    "editor.defaultFormatter": "charliermarsh.ruff",
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports.ruff": "always"
+                    }
                 }
             }
         }

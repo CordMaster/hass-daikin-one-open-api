@@ -1,60 +1,48 @@
-# Notice
+# HASS Daikin One Open API
 
-The component and platforms in this repository are not meant to be used by a
-user, but as a "blueprint" that custom component developers can build
-upon, to make more awesome stuff.
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=CordMaster&repository=hass-daikin-one-open-api)
 
-HAVE FUN! 😎
+## What is this?
 
-## Why?
+This is a simple cloud-polling integration that integrates Home Assistant with the [Daikin One Open API](https://www.daikinone.com/openapi/index.html) for (recent) Daikin, Amana, and Goodman thermostats.
+It provides binary sensor, climate, select, sensor, and switch platforms for each thermostat.
+Per their API specs, polling occurs every 3 minutes.
 
-This is simple, by having custom_components look (README + structure) the same
-it is easier for developers to help each other and for users to start using them.
+## Compatability
 
-If you are a developer and you want to add things to this "blueprint" that you think more
-developers will have use for, please open a PR to add it :)
+This integration is compatable with any thermostat listed [here](https://www.daikinone.com/openapi/overview/index.html).
+In summary, it is compatable with select Daikin, Amana, and Goodman thermostats.
 
-## What?
+This has been confirmed to work with an Amana Smart Thermostat (ATST-CWE-BL-A) with a single unit.
 
-This repository contains multiple files, here is a overview:
+Other units and multi-thermostat systems have not been tested yet.
 
-File | Purpose | Documentation
--- | -- | --
-`.devcontainer.json` | Used for development/testing with Visual Studio Code. | [Documentation](https://code.visualstudio.com/docs/remote/containers)
-`.github/renovate.json` | Dependency update configuration for Renovate (enabled by default). | [Documentation](https://docs.renovatebot.com/configuration-options/)
-`.github/_dependabot.yml` | Dependency update configuration for Dependabot (disabled, see "Dependency updates" below). | [Documentation](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file)
-`.github/ISSUE_TEMPLATE/*.yml` | Templates for the issue tracker | [Documentation](https://help.github.com/en/github/building-a-strong-community/configuring-issue-templates-for-your-repository)
-`custom_components/integration_blueprint/*` | Integration files, this is where everything happens. | [Documentation](https://developers.home-assistant.io/docs/creating_component_index)
-`CONTRIBUTING.md` | Guidelines on how to contribute. | [Documentation](https://help.github.com/en/github/building-a-strong-community/setting-guidelines-for-repository-contributors)
-`LICENSE` | The license file for the project. | [Documentation](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository)
-`README.md` | The file you are reading now, should contain info about the integration, installation and configuration instructions. | [Documentation](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
-`requirements_dev.txt` | Python packages used for development/testing this integration (also installs lint tooling via `requirements_lint.txt`). | [Documentation](https://pip.pypa.io/en/stable/user_guide/#requirements-files)
-`requirements_lint.txt` | Python packages used to lint this integration (installed by the Lint CI job). | [Documentation](https://pip.pypa.io/en/stable/user_guide/#requirements-files)
-`requirements_common.txt` | Python packages common to CI and local dev, installed first so any pip upgrade completes before other dependencies (e.g. a modern pip). | [Documentation](https://pip.pypa.io/en/stable/user_guide/#requirements-files)
+## How do I use this?
 
-## Dependency updates
+1. Set up your thermostat in the `Skyport Home` app
+2. Follow the steps [here](https://www.daikinone.com/openapi/documentation/index.html) to get an `Integrator Token` and an `API Token`.
+3. Install this integration in your Home Assistant instance (either via HACS or by manually installing it in the `custom_components` directory).
+4. Start the setup process in your Home Assistant instance. Provide:
+    1. The email of your `Skyport Home` account (the one associated with your `API Token`).
+    2. Your `Integrator Token`.
+    3. Your `API Token`.
+5. Select the devices you want to include in Home Assistant.
+6. Enjoy!
 
-This template ships with configuration for **two** dependency update tools. Pick
-**one** and remove or disable the other:
+## Special Thanks
 
-- **Renovate** (`.github/renovate.json`) is enabled by default.
-- **Dependabot** (`.github/_dependabot.yml`) is included but disabled — the `_`
-  prefix means GitHub ignores it. To use Dependabot instead, rename the file
-  back to `.github/dependabot.yml` and delete `.github/renovate.json`.
+* Special thanks to the Home Assistant team and Nabu Casa for their amazing products.
+* Special thanks to the HACS team and maintainers.
+* Special thanks to [ludeeus](https://github.com/ludeeus) for [integration_blueprint](https://github.com/ludeeus/integration_blueprint) from which this project was bootstrapped. See [TEMPLATE_LICENSE.md](TEMPLATE_LICENSE.md).
 
-## How?
+## Legal Notes
 
-1. Create a new repository in GitHub, using this repository as a template by clicking the "Use this template" button in the GitHub UI.
-1. Open your new repository in Visual Studio Code devcontainer (Preferably with the "`Dev Containers: Clone Repository in Named Container Volume...`" option).
-1. Rename all instances of the `integration_blueprint` to `custom_components/<your_integration_domain>` (e.g. `custom_components/awesome_integration`).
-1. Rename all instances of the `Integration Blueprint` to `<Your Integration Name>` (e.g. `Awesome Integration`).
-1. Run the `scripts/develop` to start HA and test out your new integration.
+This project is not endorsed by Daikin. Any use of their brands is intended for identification only. All trademarks are property of their owners. Any issues with it should be reported here and not to them.
 
-## Next steps
+The brand icons are sourced from [https://github.com/home-assistant/brands](https://github.com/home-assistant/brands). The license is quoted below.
 
-These are some next steps you may want to look into:
-- Add tests to your integration, [`pytest-homeassistant-custom-component`](https://github.com/MatthewFlamm/pytest-homeassistant-custom-component) can help you get started.
-- Add brand images (logo/icon).
-- Create your first release.
-- Share your integration on the [Home Assistant Forum](https://community.home-assistant.io/).
-- Submit your integration to [HACS](https://hacs.xyz/docs/publish/start).
+```
+All product names, trademarks and registered trademarks in the images in this repository, are property of their respective owners. All images in this repository are used by the Home Assistant project for identification purposes only.
+
+The use of these names, trademarks and brands appearing in these image files, do not imply endorsement.
+```
