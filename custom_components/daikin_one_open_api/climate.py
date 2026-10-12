@@ -243,6 +243,7 @@ class DaikinOneOpenApiClimate(DaikinOneOpenApiEntity, ClimateEntity):
                 heat_setpoint=kwargs["target_temp_low"],
                 cool_setpoint=kwargs["target_temp_high"],
             )
+            return
 
         msg = "Bad state."
         raise RuntimeError(msg)
