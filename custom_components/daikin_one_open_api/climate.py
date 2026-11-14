@@ -72,7 +72,7 @@ class DaikinOneOpenApiClimate(DaikinOneOpenApiEntity, ClimateEntity):
     @property
     def supported_features(self) -> ClimateEntityFeature:
         """Get supported features."""
-        supported_features = ClimateEntityFeature()
+        supported_features = ClimateEntityFeature(0)
 
         if (
             self.coordinator.data.fan_circulate is None
