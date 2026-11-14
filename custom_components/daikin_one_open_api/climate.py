@@ -16,8 +16,6 @@ from .api_types import EquipmentStatus, FanCirculateSchedule, ThermostatMode
 from .entity import DaikinOneOpenApiEntity
 
 if TYPE_CHECKING:
-    from enum import IntFlag
-
     from homeassistant.core import HomeAssistant
     from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -72,9 +70,15 @@ class DaikinOneOpenApiClimate(DaikinOneOpenApiEntity, ClimateEntity):
         )
 
     @property
-    def supported_features(self) -> IntFlag:
+    def supported_features(self) -> ClimateEntityFeature:
         """Get supported features."""
-        supported_features = ClimateEntityFeature.FAN_MODE
+        supported_features = ClimateEntityFeature()
+
+        if (
+            self.coordinator.data.fan_circulate is None
+            or self.coordinator.data.fan_circulate_speed is None
+        ):
+            supported_features |= ClimateEntityFeature.FAN_MODE
 
         if self.coordinator.data.mode in (
             ThermostatMode.COOL,
@@ -111,6 +115,8 @@ class DaikinOneOpenApiClimate(DaikinOneOpenApiEntity, ClimateEntity):
     @property
     def fan_mode(self) -> str | None:
         """Get current fan mode."""
+        if self.coordinator.data.fan_circulate is None:
+            return None
         if self.coordinator.data.fan_circulate == FanCirculateSchedule.OFF:
             return FAN_AUTO
         if self.coordinator.data.fan_circulate == FanCirculateSchedule.ALWAYS_ON:

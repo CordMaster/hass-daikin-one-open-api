@@ -119,9 +119,14 @@ class DaikinOneOpenApiThermostatStateResponse(BaseDaikinOneOpenApiModel):
     mode: ThermostatMode
     mode_limit: ModeLimit
     mode_em_heat_available: ModeEmergencyHeatAvailable
-    fan: FanState
-    fan_circulate: FanCirculateSchedule
-    fan_circulate_speed: FanCirculateSpeed
+
+    # The API seems to sometimes not return this value. Default
+    # to None.
+    fan: FanState | None = None
+
+    # Only supported by unitary systems (per the api docs).
+    fan_circulate: FanCirculateSchedule | None = None
+    fan_circulate_speed: FanCirculateSpeed | None = None
 
     heat_setpoint: float
     cool_setpoint: float
